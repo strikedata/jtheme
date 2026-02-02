@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Janus Dashboard{% endblock %}</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-layer-group" style="margin-right: 10px;"></i> JANUS
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="/dashboard" class="nav-link {% if request.path == '/dashboard' %}active{% endif %}">
+                            <i class="fa-solid fa-chart-line"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/users" class="nav-link">
+                            <i class="fa-solid fa-users"></i> Users
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/projects" class="nav-link">
+                            <i class="fa-solid fa-briefcase"></i> Projects
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/reports" class="nav-link">
+                            <i class="fa-solid fa-file-invoice"></i> Reports
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/settings" class="nav-link">
+                            <i class="fa-solid fa-gear"></i> Settings
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="/logout" class="nav-link" style="color: rgba(255,255,255,0.6);">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="header-search">
+                    <input type="text" placeholder="Search anything...">
+                </div>
+                
+                <div class="user-menu">
+                    <div class="notification-icon">
+                        <i class="fa-regular fa-bell" style="font-size: 1.2rem; color: var(--secondary-color);"></i>
+                    </div>
+                    <div class="user-info" style="text-align: right; margin-right: 8px;">
+                        <div style="font-weight: 600; font-size: 0.9rem;">Admin User</div>
+                        <div style="font-size: 0.75rem; color: var(--text-muted);">Administrator</div>
+                    </div>
+                    <div class="user-avatar">AD</div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

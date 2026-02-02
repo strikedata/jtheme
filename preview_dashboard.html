@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Janus</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="janus_theme/static/css/style.css">
+</head>
+<body>
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fa-solid fa-layer-group" style="margin-right: 10px;"></i> JANUS
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">
+                            <i class="fa-solid fa-chart-line"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fa-solid fa-users"></i> Users
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fa-solid fa-briefcase"></i> Projects
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fa-solid fa-file-invoice"></i> Reports
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fa-solid fa-gear"></i> Settings
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#" class="nav-link" style="color: rgba(255,255,255,0.6);">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="header-search">
+                    <input type="text" placeholder="Search anything...">
+                </div>
+                
+                <div class="user-menu">
+                    <div class="notification-icon">
+                        <i class="fa-regular fa-bell" style="font-size: 1.2rem; color: var(--secondary-color);"></i>
+                    </div>
+                    <div class="user-info" style="text-align: right; margin-right: 8px;">
+                        <div style="font-weight: 600; font-size: 0.9rem;">Admin User</div>
+                        <div style="font-size: 0.75rem; color: var(--text-muted);">Administrator</div>
+                    </div>
+                    <div class="user-avatar">AD</div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                
+    <h1 class="page-title">Dashboard Overview</h1>
+
+    <!-- Summary Cards -->
+    <div class="grid-3">
+        <div class="card stat-card">
+            <div class="stat-header">
+                <span>TOTAL USERS</span>
+                <i class="fa-solid fa-users" style="color: var(--primary-color);"></i>
+            </div>
+            <div class="stat-value">2,548</div>
+            <div class="stat-trend text-success">
+                <i class="fa-solid fa-arrow-trend-up"></i> 12% increase from last month
+            </div>
+        </div>
+
+        <div class="card stat-card">
+            <div class="stat-header">
+                <span>REVENUE</span>
+                <i class="fa-solid fa-euro-sign" style="color: var(--primary-color);"></i>
+            </div>
+            <div class="stat-value">€45,200</div>
+            <div class="stat-trend text-success">
+                <i class="fa-solid fa-arrow-trend-up"></i> 8% increase
+            </div>
+        </div>
+
+        <div class="card stat-card">
+            <div class="stat-header">
+                <span>ACTIVE SESSIONS</span>
+                <i class="fa-solid fa-clock" style="color: var(--primary-color);"></i>
+            </div>
+            <div class="stat-value">482</div>
+            <div class="stat-trend text-danger">
+                <i class="fa-solid fa-arrow-trend-down"></i> 3% decrease
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart Section -->
+    <div class="card" style="margin-bottom: 32px;">
+        <h3 style="margin-bottom: 20px; font-weight: 600; color: var(--text-main);">Monthly Revenue</h3>
+        <div style="height: 300px; width: 100%;">
+            <canvas id="revenueChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Data Table Section -->
+    <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3 style="font-weight: 600; color: var(--text-main);">Recent Users</h3>
+            <button class="btn btn-primary"><i class="fa-solid fa-plus" style="margin-right: 8px;"></i> Add User</button>
+        </div>
+        
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#U-1001</td>
+                        <td>Sarah Miller</td>
+                        <td>sarah.miller@example.com</td>
+                        <td>Administrator</td>
+                        <td><span class="badge badge-success">Active</span></td>
+                        <td>
+                            <button class="btn btn-outline" style="padding: 4px 8px; border: none;"><i class="fa-solid fa-pen"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#U-1002</td>
+                        <td>James Chen</td>
+                        <td>james.chen@example.com</td>
+                        <td>Editor</td>
+                        <td><span class="badge badge-warning">Pending</span></td>
+                        <td>
+                            <button class="btn btn-outline" style="padding: 4px 8px; border: none;"><i class="fa-solid fa-pen"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#U-1003</td>
+                        <td>Emily Davis</td>
+                        <td>emily.davis@example.com</td>
+                        <td>Viewer</td>
+                        <td><span class="badge badge-success">Active</span></td>
+                        <td>
+                            <button class="btn btn-outline" style="padding: 4px 8px; border: none;"><i class="fa-solid fa-pen"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('revenueChart').getContext('2d');
+    const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+    // Adjusted color for JS without hex parsing - just using hex string for colors, opaque/transparent handled by Chart.js generally or manual rgba
+    // Using simple rgba strings for gradient
+    gradient.addColorStop(0, 'rgba(64, 38, 70, 0.2)');
+    gradient.addColorStop(1, 'rgba(64, 38, 70, 0.0)');
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Revenue (€)',
+                data: [5000, 15000, 22000, 34000, 28000, 52000],
+                borderColor: '#402646',
+                backgroundColor: gradient,
+                borderWidth: 2,
+                fill: true,
+                tension: 0.4,
+                pointBackgroundColor: '#ffffff',
+                pointBorderColor: '#402646',
+                pointBorderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        color: 'rgba(0,0,0,0.05)'
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

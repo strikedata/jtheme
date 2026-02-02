@@ -1,0 +1,157 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Dashboard | Janus{% endblock %}
+
+{% block content %}
+    <h1 class="page-title">Dashboard Overview</h1>
+
+    <!-- Summary Cards -->
+    <div class="grid-3">
+        <div class="card stat-card">
+            <div class="stat-header">
+                <span>TOTAL USERS</span>
+                <i class="fa-solid fa-users" style="color: var(--primary-color);"></i>
+            </div>
+            <div class="stat-value">2,548</div>
+            <div class="stat-trend text-success">
+                <i class="fa-solid fa-arrow-trend-up"></i> 12% increase from last month
+            </div>
+        </div>
+
+        <div class="card stat-card">
+            <div class="stat-header">
+                <span>REVENUE</span>
+                <i class="fa-solid fa-euro-sign" style="color: var(--primary-color);"></i>
+            </div>
+            <div class="stat-value">€45,200</div>
+            <div class="stat-trend text-success">
+                <i class="fa-solid fa-arrow-trend-up"></i> 8% increase
+            </div>
+        </div>
+
+        <div class="card stat-card">
+            <div class="stat-header">
+                <span>ACTIVE SESSIONS</span>
+                <i class="fa-solid fa-clock" style="color: var(--primary-color);"></i>
+            </div>
+            <div class="stat-value">482</div>
+            <div class="stat-trend text-danger">
+                <i class="fa-solid fa-arrow-trend-down"></i> 3% decrease
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart Section -->
+    <div class="card" style="margin-bottom: 32px;">
+        <h3 style="margin-bottom: 20px; font-weight: 600; color: var(--text-main);">Monthly Revenue</h3>
+        <div style="height: 300px; width: 100%;">
+            <canvas id="revenueChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Data Table Section -->
+    <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3 style="font-weight: 600; color: var(--text-main);">Recent Users</h3>
+            <button class="btn btn-primary"><i class="fa-solid fa-plus" style="margin-right: 8px;"></i> Add User</button>
+        </div>
+        
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#U-1001</td>
+                        <td>Sarah Miller</td>
+                        <td>sarah.miller@example.com</td>
+                        <td>Administrator</td>
+                        <td><span class="badge badge-success">Active</span></td>
+                        <td>
+                            <button class="btn btn-outline" style="padding: 4px 8px; border: none;"><i class="fa-solid fa-pen"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#U-1002</td>
+                        <td>James Chen</td>
+                        <td>james.chen@example.com</td>
+                        <td>Editor</td>
+                        <td><span class="badge badge-warning">Pending</span></td>
+                        <td>
+                            <button class="btn btn-outline" style="padding: 4px 8px; border: none;"><i class="fa-solid fa-pen"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#U-1003</td>
+                        <td>Emily Davis</td>
+                        <td>emily.davis@example.com</td>
+                        <td>Viewer</td>
+                        <td><span class="badge badge-success">Active</span></td>
+                        <td>
+                            <button class="btn btn-outline" style="padding: 4px 8px; border: none;"><i class="fa-solid fa-pen"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('revenueChart').getContext('2d');
+    const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+    gradient.addColorStop(0, 'rgba(64, 38, 70, 0.2)');
+    gradient.addColorStop(1, 'rgba(64, 38, 70, 0.0)');
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Revenue (€)',
+                data: [5000, 15000, 22000, 34000, 28000, 52000],
+                borderColor: '#402646',
+                backgroundColor: gradient,
+                borderWidth: 2,
+                fill: true,
+                tension: 0.4,
+                pointBackgroundColor: '#ffffff',
+                pointBorderColor: '#402646',
+                pointBorderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        color: 'rgba(0,0,0,0.05)'
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}

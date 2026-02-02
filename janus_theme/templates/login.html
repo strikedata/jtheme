@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Janus</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    
+    <style>
+        body {
+            background-color: var(--bg-body);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .login-card {
+            background: #fff;
+            padding: 40px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        .brand-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .login-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            font-size: 0.95rem;
+        }
+        
+        .form-group {
+            text-align: left;
+        }
+        
+        .btn-block {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+        }
+
+        .login-footer {
+            margin-top: 24px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        
+        .login-footer a {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <div class="brand-logo">
+            <!-- Simple SVG Logo Placeholder -->
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#402646" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 17L12 22L22 17" stroke="#402646" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 12L12 17L22 12" stroke="#402646" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            JANUS
+        </div>
+        <p class="login-subtitle">Sign in to your account</p>
+        
+        <form>
+            <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-control" placeholder="name@company.com">
+            </div>
+            
+            <div class="form-group">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <label class="form-label" style="margin-bottom: 0;">Password</label>
+                    <a href="#" style="font-size: 0.85rem; color: var(--primary-color);">Forgot password?</a>
+                </div>
+                <input type="password" class="form-control" placeholder="••••••••">
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+        </form>
+        
+        <div class="login-footer">
+            Don't have an account? <a href="#">Contact Support</a>
+        </div>
+    </div>
+
+</body>
+</html>
