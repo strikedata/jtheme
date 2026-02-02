@@ -9,9 +9,9 @@ setup(
     description="A professional Enterprise Django theme.",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/django-janus-theme",
-    author="Your Name",
-    author_email="your@email.com",
+    url="https://github.com/strikedata/jtheme",
+    author="DataStrike Team",
+    author_email="info@datastrike.it",
     classifiers=[
         "Environment :: Web Environment",
         "Framework :: Django",
