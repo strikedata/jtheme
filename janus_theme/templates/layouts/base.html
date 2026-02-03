@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Janus Dashboard{% endblock %}</title>
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/static/css/style.css">
+
+    <!-- Theme CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% block extra_css %}{% endblock %}
 </head>
 <body>
@@ -22,11 +23,14 @@
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-header">
+                {% block sidebar_header %}
                 <i class="fa-solid fa-layer-group" style="margin-right: 10px;"></i> JANUS
+                {% endblock %}
             </div>
-            
+
             <nav class="sidebar-nav">
                 <ul class="nav-list">
+                    {% block sidebar_nav %}
                     <li class="nav-item">
                         <a href="/dashboard" class="nav-link {% if request.path == '/dashboard' %}active{% endif %}">
                             <i class="fa-solid fa-chart-line"></i> Dashboard
@@ -52,13 +56,16 @@
                             <i class="fa-solid fa-gear"></i> Settings
                         </a>
                     </li>
+                    {% endblock %}
                 </ul>
             </nav>
-            
+
             <div class="sidebar-footer">
+                {% block sidebar_footer %}
                 <a href="/logout" class="nav-link" style="color: rgba(255,255,255,0.6);">
                     <i class="fa-solid fa-right-from-bracket"></i> Logout
                 </a>
+                {% endblock %}
             </div>
         </aside>
 
@@ -66,11 +73,14 @@
         <main class="main-content">
             <!-- Top Header -->
             <header class="top-header">
+                {% block header_left %}
                 <div class="header-search">
                     <input type="text" placeholder="Search anything...">
                 </div>
-                
+                {% endblock %}
+
                 <div class="user-menu">
+                    {% block header_right %}
                     <div class="notification-icon">
                         <i class="fa-regular fa-bell" style="font-size: 1.2rem; color: var(--secondary-color);"></i>
                     </div>
@@ -79,11 +89,13 @@
                         <div style="font-size: 0.75rem; color: var(--text-muted);">Administrator</div>
                     </div>
                     <div class="user-avatar">AD</div>
+                    {% endblock %}
                 </div>
             </header>
 
             <!-- Page Content -->
             <div class="page-content">
+                {% block messages %}{% endblock %}
                 {% block content %}{% endblock %}
             </div>
         </main>
