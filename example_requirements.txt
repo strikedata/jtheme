@@ -1,6 +1,0 @@
-Django>=4.2
-# ... altre dipendenze del tuo progetto ...
-
-# Installa Janus Theme direttamente da Git
-# Sostituisci la URL con quella del tuo repository reale
-git+https://github.com/tuo-username/janus_theme.git@main#egg=django-janus-theme
