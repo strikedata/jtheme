@@ -19,9 +19,11 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <div class="layout-wrapper">
+    <div class="layout-wrapper" id="layoutWrapper">
+        <!-- Overlay per chiudere sidebar su mobile -->
+        <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
         <!-- Sidebar -->
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 {% block sidebar_header %}
                 <i class="fa-solid fa-layer-group" style="margin-right: 10px;"></i> JANUS
@@ -53,6 +55,9 @@
         <main class="main-content">
             <!-- Top Header -->
             <header class="top-header">
+                <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Mostra/nascondi menu">
+                    <i class="fa-solid fa-bars" id="sidebarToggleIcon"></i>
+                </button>
                 {% block header_left %}
                 <div class="header-search">
                     <input type="text" placeholder="Search anything...">
@@ -82,6 +87,51 @@
     </div>
 
     <!-- Scripts -->
+    <script>
+    (function() {
+        var wrapper = document.getElementById('layoutWrapper');
+        var sidebar = document.getElementById('sidebar');
+        var toggle = document.getElementById('sidebarToggle');
+        var overlay = document.getElementById('sidebarOverlay');
+        var icon = document.getElementById('sidebarToggleIcon');
+
+        function isMobile() { return window.innerWidth <= 768; }
+
+        function setCollapsed(collapsed) {
+            wrapper.classList.toggle('sidebar-collapsed', collapsed);
+            if (overlay) overlay.setAttribute('aria-hidden', collapsed ? 'true' : 'false');
+            if (icon) {
+                icon.classList.toggle('fa-bars', collapsed);
+                icon.classList.toggle('fa-times', !collapsed);
+            }
+            try { localStorage.setItem('janus-sidebar-collapsed', collapsed ? '1' : '0'); } catch (e) {}
+        }
+
+        function toggleSidebar() {
+            var collapsed = wrapper.classList.contains('sidebar-collapsed');
+            setCollapsed(!collapsed);
+        }
+
+        if (toggle) toggle.addEventListener('click', toggleSidebar);
+        if (overlay) overlay.addEventListener('click', function() { setCollapsed(true); });
+
+        (function init() {
+            if (isMobile()) {
+                setCollapsed(true);
+            } else {
+                try {
+                    var saved = localStorage.getItem('janus-sidebar-collapsed');
+                    if (saved !== null) setCollapsed(saved === '1');
+                } catch (e) {}
+            }
+        })();
+
+        window.addEventListener('resize', function() {
+            if (!isMobile()) return;
+            if (!wrapper.classList.contains('sidebar-collapsed')) setCollapsed(true);
+        });
+    })();
+    </script>
     {% block extra_js %}{% endblock %}
 </body>
 </html>

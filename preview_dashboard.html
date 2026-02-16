@@ -17,9 +17,10 @@
     <link rel="stylesheet" href="janus_theme/static/css/style.css">
 </head>
 <body>
-    <div class="layout-wrapper">
+    <div class="layout-wrapper" id="layoutWrapper">
+        <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
         <!-- Sidebar -->
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <i class="fa-solid fa-layer-group" style="margin-right: 10px;"></i> JANUS
             </div>
@@ -45,6 +46,9 @@
         <main class="main-content">
             <!-- Top Header -->
             <header class="top-header">
+                <button type="button" class="sidebar-toggle" id="sidebarToggle" aria-label="Mostra/nascondi menu">
+                    <i class="fa-solid fa-bars" id="sidebarToggleIcon"></i>
+                </button>
                 <div class="header-search">
                     <input type="text" placeholder="Search anything...">
                 </div>
@@ -170,7 +174,42 @@
     </div>
 
     <!-- Scripts -->
-    
+    <script>
+    (function() {
+        var wrapper = document.getElementById('layoutWrapper');
+        var toggle = document.getElementById('sidebarToggle');
+        var overlay = document.getElementById('sidebarOverlay');
+        var icon = document.getElementById('sidebarToggleIcon');
+
+        function isMobile() { return window.innerWidth <= 768; }
+
+        function setCollapsed(collapsed) {
+            wrapper.classList.toggle('sidebar-collapsed', collapsed);
+            if (overlay) overlay.setAttribute('aria-hidden', collapsed ? 'true' : 'false');
+            if (icon) {
+                icon.classList.toggle('fa-bars', collapsed);
+                icon.classList.toggle('fa-times', !collapsed);
+            }
+            try { localStorage.setItem('janus-sidebar-collapsed', collapsed ? '1' : '0'); } catch (e) {}
+        }
+
+        if (toggle) toggle.addEventListener('click', function() {
+            setCollapsed(!wrapper.classList.contains('sidebar-collapsed'));
+        });
+        if (overlay) overlay.addEventListener('click', function() { setCollapsed(true); });
+
+        if (isMobile()) setCollapsed(true);
+        else {
+            try {
+                var saved = localStorage.getItem('janus-sidebar-collapsed');
+                if (saved !== null) setCollapsed(saved === '1');
+            } catch (e) {}
+        }
+        window.addEventListener('resize', function() {
+            if (isMobile() && !wrapper.classList.contains('sidebar-collapsed')) setCollapsed(true);
+        });
+    })();
+    </script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const ctx = document.getElementById('revenueChart').getContext('2d');
