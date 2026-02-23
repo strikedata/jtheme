@@ -9,7 +9,6 @@ description = "A professional Enterprise Django theme."
 readme = "README.md"
 license = { text = "MIT" }
 authors = [{ name = "Luca", email = "luca.lusvarghi@strikedataintelligence.it" }]
-url = "https://github.com/strikedata/jtheme"
 requires-python = ">=3.13"
 dependencies = ["Django>=3.0"]
 classifiers = [
@@ -24,6 +23,10 @@ classifiers = [
     "Topic :: Internet :: WWW/HTTP",
     "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
 ]
+
+[project.urls]
+Homepage = "https://github.com/strikedata/jtheme"
+Repository = "https://github.com/strikedata/jtheme"
 
 [tool.setuptools]
 package-dir = { "" = "src" }
