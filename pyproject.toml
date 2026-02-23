@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel", "setuptools_scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "janus_theme"
+dynamic = ["version"]
+description = "A professional Enterprise Django theme."
+authors = [{ name = "Luca", email = "luca.lusvarghi@strikedataintelligence.it" }]
+requires-python = ">=3.13"
+dependencies = ["Django>=3.0"]
+
+[tool.setuptools]
+package-dir = {"" = ""}
+
+[tool.setuptools_scm]
+version_scheme = "post-release"
+local_scheme = "no-local-version"
